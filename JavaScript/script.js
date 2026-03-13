@@ -46,26 +46,17 @@
 // a = a--;
 // console.log(a)
 // console.log(a !== b)
-var a = 10;
-var b = 80;
-var c = 50;
-var d = 90;
+// var a = 10;
+// var b = 80;
+// var c = 50;
+// var d = 90;
 
-// console.log(a > 10 && b < a);
-console.log(a > 10 || b == a && c > d || !(d > c));
+// // console.log(a > 10 && b < a);
+// console.log(a > 10 || b == a && c > d || !(d > c));
 
 // console.log(!true);
 
 // 5 4 1
-
-
-
-
-
-
-
-
-
 
 
 // post increment
@@ -83,3 +74,36 @@ console.log(a > 10 || b == a && c > d || !(d > c));
 //? a = a - 1
 // a = --a;
 // console.log(a)
+
+// var admin = false;
+
+// console.log(admin ? "admin" : "student");
+
+
+// 2 table
+// var a = 20;
+// var b = 10;
+// if (a < b) { // ? false
+//     console.log("a is greater than b");
+// } else {
+//     console.log("b is greater than a");
+// }
+
+var num1 = 10;
+var num2 = 1212132554;
+var operation = "+";
+
+
+if (operation == "+") {
+    console.log(num1 + num2);
+} else if (operation == "-") {
+    console.log(num1 - num2);
+} else if (operation == "*") {
+    console.log(num1 * num2);
+} else if (operation == "/") {
+    if (num2 != 0) {
+        console.log(num1 / num2);
+    } else {
+        console.log("Cannot divide by zero");
+    }
+}
