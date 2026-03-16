@@ -12,7 +12,7 @@
 // var a= 10 + 20;
 // console.log(a);
 
-// //? + - * / % ** 
+// //? + - * / % **
 // var a = 10;
 // var b = 20;
 // console.log(a % b) //? 2*2*2
@@ -24,13 +24,11 @@
 // console.log(a == b) //? false
 // console.log(a === b) //? false
 
-
 // var a = "10";
 // var b = 20;
 // //? concatenation
 // console.log(a - b)
 // console.log(a !== b)
-
 
 // var num = BigInt(65445645645454545458786787857887);
 // var num2 = 65445645645454545458786787857887n;
@@ -58,14 +56,11 @@
 
 // 5 4 1
 
-
 // post increment
 // a = a++;
 
 //? pre increment
 //? ++a
-
-
 
 //? a++
 //? a = a + 1
@@ -79,7 +74,6 @@
 
 // console.log(admin ? "admin" : "student");
 
-
 // 2 table
 // var a = 20;
 // var b = 10;
@@ -89,21 +83,87 @@
 //     console.log("b is greater than a");
 // }
 
-var num1 = 10;
-var num2 = 1212132554;
-var operation = "+";
+// var num1 = 10;
+// var num2 = 1212132554;
+// var operation = "+";
 
+// if (operation == "+") {
+//     console.log(num1 + num2);
+// } else if (operation == "-") {
+//     console.log(num1 - num2);
+// } else if (operation == "*") {
+//     console.log(num1 * num2);
+// } else if (operation == "/") {
+//     if (num2 != 0) {
+//         console.log(num1 / num2);
+//     } else {
+//         console.log("Cannot divide by zero");
+//     }
+// }
 
-if (operation == "+") {
-    console.log(num1 + num2);
-} else if (operation == "-") {
-    console.log(num1 - num2);
-} else if (operation == "*") {
-    console.log(num1 * num2);
-} else if (operation == "/") {
-    if (num2 != 0) {
-        console.log(num1 / num2);
-    } else {
-        console.log("Cannot divide by zero");
-    }
-}
+// var num = 1
+// switch (num) {
+//     case 1:
+//         console.log("one")
+//         break;
+//     case 2:
+//         console.log("two")
+//         break;
+//     case 3:
+//         console.log("three")
+//         break;
+//     default:
+//         console.log("number is greater than 3");
+//         break;
+// }
+
+// var userNum = Number(prompt("Enter a number"));
+// var num = 10;
+
+// if (userNum == num) {
+//     console.log("userNum is equal to num");
+// } else {
+//     console.log("userNum is not equal to num");
+// }
+
+// var i = 0;
+// // i = 5
+
+// while (i > 5) {
+//         console.log("hello", i);
+//         i++;
+// }
+
+// var i = 0;
+
+// do {
+//     console.log("Hello", i);
+//     i++
+// } while (i > 5);
+
+// while
+
+// var i = 1;
+// var table = 20;
+
+// while (i <= 10) {
+//   console.log(`${table} * ${i} = ${table * i}`);
+//   i++;
+// }
+
+// var name = "John";
+// var a = `hello ${name}`;
+// console.log(a)
+
+// *
+// **
+// ***
+// ****
+// *****
+// for (var i = 0; i <= 5; i++) {
+//     var star = "";
+//     for (var j = 1; j <= i; j++) {
+//         star += "*";
+//     }
+//     console.log(star);
+// }
