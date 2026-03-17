@@ -167,3 +167,20 @@
 //     }
 //     console.log(star);
 // }
+
+// student variable
+// var student1 = 20;
+// var student2 = 20;
+// console.log(student1 + student2);
+
+
+var func = function add(a, b) {
+    console.log(b + a);
+}
+
+
+var func = function (a, b) {
+    console.log(b + a);
+}
+func(10, 20)
+
