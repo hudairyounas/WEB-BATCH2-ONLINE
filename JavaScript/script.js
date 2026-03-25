@@ -174,13 +174,71 @@
 // console.log(student1 + student2);
 
 
-var func = function add(a, b) {
-    console.log(b + a);
+// var func = function add(a, b) {
+//     console.log(b + a);
+// }
+
+
+// var func = function (a, b) {
+//     console.log(b + a);
+// }
+// func(10, 20)
+
+// var result = function log(a, b, c) {
+//   console.log(a + b);
+// }
+// var result = function (a, b, c) {
+//   console.log(a + b + c);
+// }
+
+// result(10, 20, 30);
+
+// return keyword
+
+// function add(a, b) {
+//    return a + b;
+// }
+
+// console.log(add(10, 20));
+
+// {
+//     var a = 10;
+// }
+
+// console.log(a)
+// (function add() {
+//     console.log("hello");
+// })()
+
+// var func = (function () {
+//     return "world"
+// })()
+
+// console.log(func)
+// syntax
+
+
+// var a = (function (a, b) {
+//     return a + b;
+// })(10, 20)
+
+// console.log(a)
+
+// console.log("hello")
+// // olleh
+
+// function reverseStr(str) {
+//     return str.split("").reverse().join("");
+// }
+
+// // console.log(reverseStr("hello world"))
+// var str = "hello"
+// console.log(str.length)
+
+// console.log("hello ".length)
+
+var str = "ali"
+
+for (var i = 0; i < str.length; i++) {
+    console.log(str[i])
 }
-
-
-var func = function (a, b) {
-    console.log(b + a);
-}
-func(10, 20)
-
