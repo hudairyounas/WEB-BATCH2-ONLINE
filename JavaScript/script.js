@@ -173,11 +173,9 @@
 // var student2 = 20;
 // console.log(student1 + student2);
 
-
 // var func = function add(a, b) {
 //     console.log(b + a);
 // }
-
 
 // var func = function (a, b) {
 //     console.log(b + a);
@@ -217,7 +215,6 @@
 // console.log(func)
 // syntax
 
-
 // var a = (function (a, b) {
 //     return a + b;
 // })(10, 20)
@@ -237,8 +234,61 @@
 
 // console.log("hello ".length)
 
-var str = "ali"
+// var str = "ali"
 
-for (var i = 0; i < str.length; i++) {
-    console.log(str[i])
-}
+// for (var i = 0; i < str.length; i++) {
+//     console.log(str[i])
+// }
+
+// var func = function add(a, b) {
+//     console.log(a + b)
+// }
+// var func = function (a, b) {
+//   return a + b;
+// };
+
+// console.log(func(1, 2));
+
+// (function add() {
+//   console.log("Hello");
+// })()
+
+// (function () {
+// console.log("world")
+// })()
+// var a = 10;
+// var a = 20;
+// let a = 10;
+// a = 20;
+// console.log(a)
+
+// let a = 10;
+// a =100;
+// a= 32;
+// console.log(a)
+// const a = 78;
+// a = 65;
+// console.log(a)
+
+// {
+//     const a = 10;
+
+
+
+
+
+
+// }
+
+// console.log(a)
+
+
+// let myName = "hudair"
+// let str = `my name is ${myName}`;
+let str = `my name is jbhjvhvghvghfgcgfcfg
+mknjknjk
+// ````
+kaskjanjsknj
+
+`;
+console.log(str);
