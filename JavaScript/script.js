@@ -285,10 +285,68 @@
 
 // let myName = "hudair"
 // let str = `my name is ${myName}`;
-let str = `my name is jbhjvhvghvghfgcgfcfg
-mknjknjk
-// ````
-kaskjanjsknj
+// let str = `my name is jbhjvhvghvghfgcgfcfg
+// mknjknjk
+// // ````
+// kaskjanjsknj
 
-`;
-console.log(str);
+// `;
+// console.log(str);
+
+
+// var a = 10;
+// var a = 20;
+// var a = 300;
+// let a = 10;
+// a = 50;
+// a = 320;
+// a = 320;
+// a = 320;
+// a = 360;
+// console.log(a)
+// const a =10;
+// a =20;
+// console.log(a)
+
+
+// {
+
+// const a = 10;
+
+
+
+// }
+
+// console.log(a)
+
+let myName = "hudair"
+// let str = "my name is " + myName;
+// let str = `my name is ${myName}`;
+// console.log(str);
+
+// let str = `gbhgvghggvgf ${10 + 20}
+// ,knjknjnj
+
+// bhjbhjbhbh
+
+// `;
+
+// console.log(str);
+
+// function add(a = 5, b = 5) {
+//     return a + b;
+// }
+// console.log(add(10, 20));
+add(10, 20);
+
+const add = (a, b) => {
+    console.log(a + b)
+}
+
+// console.log(add(10, 20));
+
+// function add(a, b) {
+//     return a + b;
+// }
+
+
