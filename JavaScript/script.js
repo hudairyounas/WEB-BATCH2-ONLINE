@@ -319,7 +319,7 @@
 
 // console.log(a)
 
-let myName = "hudair"
+// let myName = "hudair"
 // let str = "my name is " + myName;
 // let str = `my name is ${myName}`;
 // console.log(str);
@@ -337,11 +337,11 @@ let myName = "hudair"
 //     return a + b;
 // }
 // console.log(add(10, 20));
-add(10, 20);
+// add(10, 20);
 
-const add = (a, b) => {
-    console.log(a + b)
-}
+// const add = (a, b) => {
+//     console.log(a + b)
+// }
 
 // console.log(add(10, 20));
 
@@ -349,4 +349,14 @@ const add = (a, b) => {
 //     return a + b;
 // }
 
+// 1000000
+let arr = ["ali", "hudair", "bilal", "umer", "saif"];
 
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i])
+}
+// let newArr = arr.push("saad", "Umar");
+// console.log(newArr);
+// console.log(arr.length)
+// let name1 = arr[0]
+// let name2 = arr[1]
