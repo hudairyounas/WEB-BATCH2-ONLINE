@@ -273,15 +273,9 @@
 // {
 //     const a = 10;
 
-
-
-
-
-
 // }
 
 // console.log(a)
-
 
 // let myName = "hudair"
 // let str = `my name is ${myName}`;
@@ -292,7 +286,6 @@
 
 // `;
 // console.log(str);
-
 
 // var a = 10;
 // var a = 20;
@@ -308,12 +301,9 @@
 // a =20;
 // console.log(a)
 
-
 // {
 
 // const a = 10;
-
-
 
 // }
 
@@ -350,13 +340,77 @@
 // }
 
 // 1000000
-let arr = ["ali", "hudair", "bilal", "umer", "saif"];
+// let arr = ["ali", "hudair", "bilal", "umer", "saif"];
 
-for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i])
-}
+// for (let i = 0; i < arr.length; i++) {
+//     console.log(arr[i])
+// }
 // let newArr = arr.push("saad", "Umar");
 // console.log(newArr);
 // console.log(arr.length)
 // let name1 = arr[0]
 // let name2 = arr[1]
+
+//*  Array Traversal / Iterating Over Arrays
+
+// let fruits = ["apple", "orange", "mango", "grapes", "banana", "kiwi", "melon", "papaya"];
+
+//? 1: for of loop , also known as iterable
+//* for...of Loop: The for...of loop is used to iterate over the values of an iterable object, such as arrays, strings, or other iterable objects.
+
+// for (let item of fruits) {
+//     console.log(item)
+// }
+
+//* 2: for in loop
+//? for...in Loop: The for...in loop is used to iterate over the properties (including indices) of an object.
+// for (let item in fruits) {
+//     console.log(item)
+// }
+
+//? 3: forEach Method
+//? The arr.forEach() method calls the provided function once for each element of the array. The provided function may perform any kind of operation on the elements of the given array.
+// let fruits = ["apple", "orange", "mango", "grapes", "banana"];
+
+// fruits.forEach((curElem, index, arr) => {
+//     console.log(curElem, index, arr)
+// })
+//? Oracal
+
+//? 30000
+// 300B
+// 0
+// 2019
+// 10B
+// 0%
+// 2026
+// 0000000000000000%
+
+// 99%
+
+// 0
+//? 44B
+// 1$
+
+// 4: map function
+// map() creates a new array from calling a function for every array element. map() does not change the original array.
+
+//todo Practice Time
+//! write a program to Multiply each element with 2
+
+
+//* Key Differences
+//! Return Value:
+//? forEach: It doesn't return a value. The forEach method is used for iterating over the elements of an array and performing a side effect, such as modifying the array or performing a task for each element.
+
+//? map: It returns a new array containing the results of applying a function to each element in the original array. The original array remains unchanged.
+
+//! Chaining:
+//? forEach: It doesn't return a value, so it cannot be directly chained with other array methods.
+
+//? map: Since it returns a new array, you can chain other array methods after using map.
+
+//* Use Case:
+//? forEach: Used when you want to iterate over the array elements and perform an action on each element, but you don't need a new array.
+
+//? map: Used when you want to create a new array based on the transformation of each element in the original array.
