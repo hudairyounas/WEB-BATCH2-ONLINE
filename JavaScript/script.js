@@ -372,31 +372,47 @@
 //? The arr.forEach() method calls the provided function once for each element of the array. The provided function may perform any kind of operation on the elements of the given array.
 // let fruits = ["apple", "orange", "mango", "grapes", "banana"];
 
-// fruits.forEach((curElem, index, arr) => {
-//     console.log(curElem, index, arr)
+// let newarr = fruits.forEach((elem, idx, arr) => {
+//     console.log(elem, idx, arr)
 // })
-//? Oracal
+// // ctrl
+// console.log(newarr)
 
-//? 30000
-// 300B
-// 0
-// 2019
-// 10B
-// 0%
-// 2026
-// 0000000000000000%
+// function forEach(arr) {
+//     for (let i = 0; i < arr.length; i++) {
+//         return arr[i]
+//     }
+// }
 
-// 99%
+// let func = forEach(fruits)
+// console.log("Func return", func)
 
-// 0
-//? 44B
-// 1$
+//* 4: map function
+//? map() creates a new array from calling a function for every array element. map() does not change the original array.
 
-// 4: map function
-// map() creates a new array from calling a function for every array element. map() does not change the original array.
-
+// let numArr = [2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let newArr = numArr.forEach((elem, idx, arr) => {
+    //     return elem
+    // })
+    // let newArr2 = numArr.map((elem, idx, arr) => {
+    //     if (elem % 2 == 0) {
+    //         return "even"
+    //     }
+    //     else {
+    //         return "odd"
+    //     }
+    // })
+    
+    // console.log("forEach",newArr)
+    // console.log("map",newArr2)
+    
 //todo Practice Time
 //! write a program to Multiply each element with 2
+let numArr = [2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+numArr.forEach((elem, idx, arr) => {
+    console.log(elem * 2)
+})
+console.log(numArr)
 
 
 //* Key Differences
