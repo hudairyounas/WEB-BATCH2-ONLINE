@@ -392,28 +392,27 @@
 
 // let numArr = [2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 // let newArr = numArr.forEach((elem, idx, arr) => {
-    //     return elem
-    // })
-    // let newArr2 = numArr.map((elem, idx, arr) => {
-    //     if (elem % 2 == 0) {
-    //         return "even"
-    //     }
-    //     else {
-    //         return "odd"
-    //     }
-    // })
-    
-    // console.log("forEach",newArr)
-    // console.log("map",newArr2)
-    
+//     return elem
+// })
+// let newArr2 = numArr.map((elem, idx, arr) => {
+//     if (elem % 2 == 0) {
+//         return "even"
+//     }
+//     else {
+//         return "odd"
+//     }
+// })
+
+// console.log("forEach",newArr)
+// console.log("map",newArr2)
+
 //todo Practice Time
 //! write a program to Multiply each element with 2
-let numArr = [2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-numArr.forEach((elem, idx, arr) => {
-    console.log(elem * 2)
-})
-console.log(numArr)
-
+// let numArr = [2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let newArr = numArr.map((elem, idx, arr) => {
+//     return elem * 2
+// })
+// console.log(newArr)
 
 //* Key Differences
 //! Return Value:
@@ -430,3 +429,26 @@ console.log(numArr)
 //? forEach: Used when you want to iterate over the array elements and perform an action on each element, but you don't need a new array.
 
 //? map: Used when you want to create a new array based on the transformation of each element in the original array.
+
+// let newFruits = fruits.pop()
+// if (idx === -1) {
+//     fruits.push("Kiwi")
+// }
+// let idx = fruits.indexOf("apple", 3);
+// console.log(fruits)
+
+
+
+
+let fruits = ["apple", "orange", "mango", "grapes", "banana"];
+
+fruits.unshift("Kiwi");
+console.log(elem)
+
+
+//? kiwi
+// fruits[2] = "Kiwi"
+// console.log(fruits)
+
+// let idx = fruits.includes("apple", 3);
+// console.log(idx);
