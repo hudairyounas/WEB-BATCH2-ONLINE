@@ -440,10 +440,10 @@
 
 
 
-let fruits = ["apple", "orange", "mango", "grapes", "banana"];
+// let fruits = ["apple", "orange", "mango", "grapes", "banana"];
 
-fruits.unshift("Kiwi");
-console.log(elem)
+// fruits.unshift("Kiwi");
+// console.log(elem)
 
 
 //? kiwi
@@ -452,3 +452,61 @@ console.log(elem)
 
 // let idx = fruits.includes("apple", 3);
 // console.log(idx);
+
+//* ==========================================================================
+//*  How to Insert, Add, Replace and Delete Elements in Array(CRUD) - p1
+//* ==========================================================================
+
+//? 👉 How to Insert, Add, Replace and Delete Elements in Array(CRUD)
+// let fruits = ["apple", "orange", "mango", "grapes", "banana"];
+
+//? 1: push(): Method that adds one or more elements to the end of an array.
+
+//? 2: pop(): Method that removes the last element from an array.
+
+//? 3: unshift(): Method that adds one or more elements to the beginning of an array.
+
+//? 4: shift(): Method that removes the first element from an array.
+// fruits.shift()
+// console.log(fruits)
+
+
+
+//* ==========================================================================
+//*  what if, we want to add or remove anywhere in an elements - p2
+//* ==========================================================================
+// let fruits = ["apple", "orange", "mango", "grapes", "banana"];
+//? The splice() method of Array instances changes the contents of an array by removing or replacing existing elements and/or adding new elements in place
+
+//* syntax
+//? splice(start, deleteCount, item1, item2, /* …, */ itemN)
+// fruits.splice(fruits.length, 0, "Cucumber");
+// console.log(fruits)
+
+
+
+//* =========================================
+//*  Searching in an Array
+//* =========================================
+//?👉  Searching and Filter in an Array
+
+//? For Search we have - indexOf, lastIndexOf & includes
+// const numbers = [1, 2, 3, 2, 4, 6, 5, 6, 7, 8, 9];
+
+//?1: indexOf Method: The indexOf method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+// syntax
+// indexOf(searchElement);
+// indexOf(searchElement, fromIndex);
+// console.log(numbers.indexOf(2))
+
+
+//? 2: lastIndexOf Method: The lastIndexOf() method of Array instances returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
+// const numbers = [1, 2, 3, 6, 4, 5, 6, 7, 8, 9];
+// console.log(numbers.lastIndexOf(6))
+//? 3: The includes method checks whether an array includes a certain element, returning true or false.
+// Syntax
+// includes(searchElement);
+// includes(searchElement, fromIndex);
+
+// const numbers = [1, 2, 3, 6, 4, 5, 6, 7, 8, 9];
+// console.log(numbers.includes(10))
