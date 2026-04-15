@@ -437,14 +437,10 @@
 // let idx = fruits.indexOf("apple", 3);
 // console.log(fruits)
 
-
-
-
 // let fruits = ["apple", "orange", "mango", "grapes", "banana"];
 
 // fruits.unshift("Kiwi");
 // console.log(elem)
-
 
 //? kiwi
 // fruits[2] = "Kiwi"
@@ -470,8 +466,6 @@
 // fruits.shift()
 // console.log(fruits)
 
-
-
 //* ==========================================================================
 //*  what if, we want to add or remove anywhere in an elements - p2
 //* ==========================================================================
@@ -482,8 +476,6 @@
 //? splice(start, deleteCount, item1, item2, /* …, */ itemN)
 // fruits.splice(fruits.length, 0, "Cucumber");
 // console.log(fruits)
-
-
 
 //* =========================================
 //*  Searching in an Array
@@ -499,7 +491,6 @@
 // indexOf(searchElement, fromIndex);
 // console.log(numbers.indexOf(2))
 
-
 //? 2: lastIndexOf Method: The lastIndexOf() method of Array instances returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
 // const numbers = [1, 2, 3, 6, 4, 5, 6, 7, 8, 9];
 // console.log(numbers.lastIndexOf(6))
@@ -510,3 +501,122 @@
 
 // const numbers = [1, 2, 3, 6, 4, 5, 6, 7, 8, 9];
 // console.log(numbers.includes(10))
+
+//todo Challenge time
+//? 1: Add Dec at the end of an array?
+//? 2: What is the return value of splice method?
+//? 3: Update march to March (update)?
+//? 4: Delete June from an array?
+const months = ["Jan", "march", "April", "June", "July"];
+
+// let indexOfMarch = months.indexOf("march")
+// let returnVal = months.splice(indexOfMarch, 1, "March");
+// console.log(months)
+
+// let indexOfJune = months.indexOf("June");
+// months.splice(indexOfJune, 1)
+// console.log(months)
+
+//* =========================================
+//*  Filter in an Array
+//* =========================================
+//? Search + Filter
+// const numbers = [1, 2, 4, 4, 5, 4, 6, 7, 8, 6, 9];
+
+//? 1: find Method: The find method is used to find the first element in an array that satisfies a provided testing function. It returns the first matching element or undefined if no element is found.
+// let result = numbers.find((elem) => {
+//     return elem > 2
+// })
+
+// console.log(result)
+
+
+//? 2: findIndex Method: The findIndex() method of TypedArray instances returns the index of the first element in a typed array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// let result = numbers.findIndex((elem) => {
+//     return elem > 5;
+// })
+
+// console.log(result)
+
+//* 3:  filter Method: The filter method creates a new array with all elements that pass the test implemented by the provided function.
+// syntax:
+//? filter(callbackFn)
+//? filter(callbackFn, thisArg)
+
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// let result = numbers.filter((elem, idx, arr) => {
+//     return elem > 6;
+// })
+
+// console.log(result)
+
+// UseCase: In E-commerce website when we want to Remove or delete any product from addToCart page.
+
+//! Ex. le'ts say user wants to delete value 6.
+// const numbers = [1, 2, 3, 4, 6, 5, 6, 7, 8, 9];
+
+// let newArr  = numbers.filter((elem) => {
+//     return elem === 6
+// })
+// console.log(newArr)
+
+//* =========================================
+//*  How to Sort and Compare an Array
+//* =========================================
+//? How to Sort and Compare an Array
+//? Sorting an Array: The sort method sorts the elements of an array in place and returns the sorted array. By default, it sorts elements as strings.
+
+// const fruits = ["Banana", "Apple", "Orange", "Mango"];
+// const numbers = [1, 2, 3, 4, 6, 5, 6, 7, 4, 8, 9, 1, 11];
+// numbers.sort((a, b) => b - a);
+
+// console.log(numbers);
+
+//? compare callback function
+// syntax
+// const sortedNumbers = numbers.sort((a, b) => a - b);
+//? if(a>b) return 1  => switch the order
+//?  if(b>a) return -1  => keep the order
+// numbers.sort((a, b) => {
+//   if (a < b) {
+//     return 1;
+//   } else {
+//     return -1;
+//   }
+// });
+// console.log(numbers);
+
+
+//? Reduce method
+//? The reduce method in JavaScript is used to accumulate or reduce an array to a single value. It iterates over the elements of an array and applies a callback function to each element, updating an accumulator value with the result. The reduce method takes a callback function as its first argument and an optional initial value for the accumulator as the second argument.
+// syntax
+
+// let array = [100, 200, 300, 400, 500];
+// let res = array.reduce((accumulator, currentValue, index, array) => {
+//   return accumulator + currentValue
+// }, 0);
+// console.log(res)
+// const products = [ 
+//     {name: "laptop", price: 100},
+//     {name: "computer", price: 600},
+//     {name: "ram", price: 400},
+//     {name: "hard disk", price: 5000},
+// ];
+
+// let res = products.filter((curElem) => {
+//     if (curElem.price < 500) {
+//         return curElem
+//     }
+// })
+
+// console.log(res)
+
+// const fruits = ["banana", "apple", "orange", "mango"];
+// let array = [100, 200, 300, 400, 500];
+// let res = array.map((cur) =>{
+//     return cur * 2
+// })
+// console.log(res)
