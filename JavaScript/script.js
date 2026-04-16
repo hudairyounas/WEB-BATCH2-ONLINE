@@ -530,7 +530,6 @@ const months = ["Jan", "march", "April", "June", "July"];
 
 // console.log(result)
 
-
 //? 2: findIndex Method: The findIndex() method of TypedArray instances returns the index of the first element in a typed array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
 // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -589,7 +588,6 @@ const months = ["Jan", "march", "April", "June", "July"];
 // });
 // console.log(numbers);
 
-
 //? Reduce method
 //? The reduce method in JavaScript is used to accumulate or reduce an array to a single value. It iterates over the elements of an array and applies a callback function to each element, updating an accumulator value with the result. The reduce method takes a callback function as its first argument and an optional initial value for the accumulator as the second argument.
 // syntax
@@ -599,7 +597,7 @@ const months = ["Jan", "march", "April", "June", "July"];
 //   return accumulator + currentValue
 // }, 0);
 // console.log(res)
-// const products = [ 
+// const products = [
 //     {name: "laptop", price: 100},
 //     {name: "computer", price: 600},
 //     {name: "ram", price: 400},
@@ -620,3 +618,90 @@ const months = ["Jan", "march", "April", "June", "July"];
 //     return cur * 2
 // })
 // console.log(res)
+
+//* String in JavaScript
+
+//? Strings in JavaScript are a fundamental data type that represents a sequence of characters.
+
+
+// Note:
+//? Strings created with single or double quotes works the same.
+// There is no difference between the two.
+
+//* String Properties:
+//? length: Property that returns the length of the string (number of characters).
+
+// let str = "Hello  World"
+// console.log(str.length)
+
+//* Escape Character
+
+// Code	   Result	    Description
+// \'	    '	        Single quote
+// \"	    "	        Double quote
+// \\	    \	        Backslash
+
+// let str = "Hello \\world\""
+// console.log(str)
+
+//* String Search Methods
+
+//? String Search Methods
+//? a:  indexOf(): The indexOf() method returns the index (position) of the first occurrence of a string in a string, or it returns -1 if the string is not found:
+// syntax
+// indexOf(searchString)
+// indexOf(searchString, position)
+
+// let str = "hello world"
+// console.log(str.indexOf("H", 3));
+
+//? b: lastIndexOf() : The lastIndexOf() method returns the index of the last occurrence of a specified text in a string:
+// syntax
+// lastIndexOf(searchString)
+// lastIndexOf(searchString, position)
+
+// let str = "hello world hello";
+// // console.log(str.indexOf("hello"))
+// console.log(str.lastIndexOf("hello"))
+
+//? match() : Returns an array of the matched values or null if no match is found.
+
+// let text = "Hello JavaScript, Jelcome Futureplix JavaScript course";
+// let result = text.match(/javaScript/gi);
+// // regex = /JavaScript/g
+// // let result = text.match("JavaScript");
+// console.log(result);
+
+//? matchAll() : Returns an iterator of all matches, providing detailed information about each match. Returns an empty iterator if no match is found.
+// let text = "I have 2 cats and 3 dogs dogs";
+
+// let matches = text.matchAll("dogs");
+
+// for (let match of matches) {
+//     console.log(match[0]);
+// }
+//? includes(): Returns true if the string contains the specified value, and false otherwise.
+// let text = "Hello JavaScript, welcome to Futureplix JavaScript course";
+// let includeResult = text.includes(/java/i);
+// let includeResult = text.includes("J");
+// console.log(includeResult);
+
+// Note: includes() is case sensitive. includes() is an ES6 feature.
+
+//? startsWith(): The startsWith() method returns true if a string begins with a specified value.Otherwise it returns false:
+// let text = "Hello JavaScript, welcome to our world best JavaScript course";
+// let result = text.startsWith("Helcome");
+// let result = text.startsWith("Hello");
+// console.log(result);
+
+//* start position for the search can be specified
+// let result = text.startsWith("welcome", 18);
+// let result = text.startsWith("welcome", 17);
+// console.log(result);
+
+//? endsWith(): The endsWith() method returns true if a string ends with a specified value. Otherwise it returns false:
+
+// let text = "Hello JavaScript, welcome to our world best JavaScript course";
+// // let result = text.endsWith("welcome");
+// let result = text.endsWith("course");
+
