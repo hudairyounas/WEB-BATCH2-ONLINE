@@ -623,7 +623,6 @@ const months = ["Jan", "march", "April", "June", "July"];
 
 //? Strings in JavaScript are a fundamental data type that represents a sequence of characters.
 
-
 // Note:
 //? Strings created with single or double quotes works the same.
 // There is no difference between the two.
@@ -666,11 +665,11 @@ const months = ["Jan", "march", "April", "June", "July"];
 
 //? match() : Returns an array of the matched values or null if no match is found.
 
-// let text = "Hello JavaScript, Jelcome Futureplix JavaScript course";
-// let result = text.match(/javaScript/gi);
-// // regex = /JavaScript/g
+let text = "Hello JavaScript, Jelcome Futureplix JavaScript course";
+let result = text.match(/JavaScript/g);
+// * regex = /JavaScript/g
 // // let result = text.match("JavaScript");
-// console.log(result);
+console.log(result);
 
 //? matchAll() : Returns an iterator of all matches, providing detailed information about each match. Returns an empty iterator if no match is found.
 // let text = "I have 2 cats and 3 dogs dogs";
@@ -705,3 +704,43 @@ const months = ["Jan", "march", "April", "June", "July"];
 // // let result = text.endsWith("welcome");
 // let result = text.endsWith("course");
 
+//* Extracting String Parts:
+//! Extracting String Parts:
+
+//? String.prototype.substr() it is deprecated  ❌
+
+//? a: slice() extracts a part of a string and returns the extracted part in a new string.
+// syntax
+// slice(start, end);
+
+// let text = "Hello JavaScript, welcome to our world best JavaScript course";
+
+// let result = text.slice(6);
+// let result = text.slice(6, 15);
+console.log(result);
+
+//! Replacing String Content:
+//? replace() : The replace method is used to replace a specified value with another value.
+// const str = "Hello, World!";
+// Syntax: replace(searchFor, replaceWith)
+// const newStr = str.replace("World", "JavaScript");
+// console.log(newStr); // Outputs: Hello, JavaScript!
+
+//! Other Useful Methods:
+//? toUpperCase and toLowerCase: Converts the string to uppercase or lowercase.
+// const str = "JavaScript";
+// console.log(str.toUpperCase()); // Outputs: JAVASCRIPT
+// console.log(str.toLowerCase()); // Outputs: javascript
+
+//? trim: Removes whitespace from both ends of the string.
+// const str = "   Hello, World!   ";
+// console.log(str.length);
+
+// let trimStr = str.trim();
+// console.log(trimStr);
+// console.log(trimStr.length);
+
+//? split: Splits the string into an array of substrings based on a specified delimiter.
+// const str = "apple,orange,banana";
+// let strArr = str.split(",").reverse().join();
+// console.log(strArr);
