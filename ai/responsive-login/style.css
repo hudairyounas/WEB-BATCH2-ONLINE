@@ -1,0 +1,266 @@
+/* 
+   CSS Variables: Used to maintain consistency in colors and spacing 
+*/
+:root {
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: #ffffff;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Main wrapper to center the card */
+.main-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Login Card Styling */
+.login-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Header text styling */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h2 {
+    color: var(--text-dark);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+/* Form group layout */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Input container with icon */
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 16px;
+}
+
+.input-icon input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 15px;
+    outline: none;
+    transition: var(--transition);
+}
+
+/* Focus state for inputs */
+.input-icon input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.forgot-pass {
+    font-size: 13px;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.forgot-pass:hover {
+    text-decoration: underline;
+}
+
+/* Custom Checkbox styling */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.mark {
+    height: 18px;
+    width: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.checkbox-container input:checked + .mark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-container input:checked + .mark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 10px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-footer {
+    margin-bottom: 25px;
+}
+
+/* Submit Button styling */
+.submit-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Divider styling */
+.divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+    top: 50%;
+    left: 0;
+    z-index: 1;
+}
+
+.divider span {
+    background: var(--card-bg);
+    padding: 0 15px;
+    font-size: 13px;
+    color: var(--text-light);
+    position: relative;
+    z-index: 2;
+}
+
+/* Social Buttons container */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-item {
+    flex: 1;
+    background: #f9fafb;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.social-item:hover {
+    background: #f3f4f6;
+}
+
+/* Footer Link styling */
+.footer-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.footer-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* 
+   Responsive Media Queries: 
+   Makes the page look good on different screen sizes 
+*/
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+    }
+}
