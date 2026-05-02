@@ -1,7 +1,7 @@
-let date = new Date(1777472758355)
+// let date = new Date(1777472758355);
 // let mili = date.getTime()
 
-console.log(date)
+// console.log(date);
 //? E = mc2
 
 // 1hour = 24hour
@@ -11,7 +11,47 @@ console.log(date)
 
 // sun => 8min
 // moon 1.6
-// KB 
-// intelligent 
+// KB
+// intelligent
 
 // painting
+
+
+
+// Date object get and set method
+
+// let date = new Date();
+
+// let date1 = date.setMonth(2)
+
+// console.log(new Date(date1))
+
+
+// setTimeOut
+
+// function printC() {
+//     console.log("hello")
+// }
+
+// let a = setInterval(printC, 1000);
+// printC()
+
+// setTimeout(() => {
+//     clearInterval(a)
+// }, 5000)
+
+// // clearTimeout(a);
+
+
+
+// setInterval(() => {
+//     console.log(new Date())
+// }, 1000)
+
+// let car = [];
+ let car = {
+    id: 1,
+    name: "Range Rover",
+    mileage: 10000,
+ };
+console.log(car)
