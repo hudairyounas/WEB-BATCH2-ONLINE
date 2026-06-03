@@ -1,8 +1,8 @@
 "use strict";
 //? 1- npm install -g typescript 
-//? 2 - tsc --init   
-//? 3 - tsc -w 
-//? 4 - node script.js
+//? 2 - tsc --init  => one time 
+//? 3 - tsc -w => every time 
+//? 4 - node script.js => every time 
 Object.defineProperty(exports, "__esModule", { value: true });
 // let username: string = "str";
 // let id: number = 2;
