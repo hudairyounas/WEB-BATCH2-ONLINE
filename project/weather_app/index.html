@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- New stylesheet -->
+    <style>
+      /* -------------------------------------------------
+   1️⃣ Typography & Design Variables
+   ------------------------------------------------- */
+      :root {
+        /* Base colors */
+        --bg: #0b0d19; /* dark cyber space navy */
+        --card-bg: rgba(22, 26, 46, 0.45); /* modern transparent dark card */
+        --accent: #4db6ac; /* vibrant teal */
+        --accent-glow: rgba(77, 182, 172, 0.35);
+        --text: #f3f4f6; /* crisp near-white */
+        --muted: #9ca3af; /* soft cool gray */
+        --border: rgba(255, 255, 255, 0.08);
+
+        /* UI helpers */
+        --shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.5);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Animated Glowing Background Orbs */
+      body::before {
+        content: '';
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(77, 182, 172, 0.18) 0%, rgba(77, 182, 172, 0) 70%);
+        top: 15%;
+        left: 20%;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: -1;
+        animation: floatOrb 10s ease-in-out infinite alternate;
+      }
+
+      body::after {
+        content: '';
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0) 70%);
+        bottom: 15%;
+        right: 20%;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: -1;
+        animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+      }
+
+      @keyframes floatOrb {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          transform: translateY(-40px) scale(1.1);
+        }
+      }
+
+      /* Weather Card glassmorphic container */
+      .weather-card {
+        width: 420px;
+        max-width: 90%;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 2.25rem 2rem;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Ambient light leak at the top border of the card */
+      .weather-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+      }
+
+      /* Search Bar */
+      .search-bar {
+        position: relative;
+        margin-bottom: 2rem;
+      }
+
+      .search-bar i {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        pointer-events: none;
+        transition: var(--transition);
+        font-size: 0.95rem;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 0.85rem 1rem 0.85rem 2.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        transition: var(--transition);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      .search-bar input::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      .search-bar input:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 0 20px rgba(77, 182, 172, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .search-bar input:focus + i {
+        color: var(--accent);
+        filter: drop-shadow(0 0 4px var(--accent-glow));
+      }
+
+      /* Overview Styling */
+      .overview {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .city-name {
+        font-size: 2.1rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -0.5px;
+        background: linear-gradient(to right, #ffffff, #e2e8f0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .date-time {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 6px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .condition {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.4rem 1.1rem;
+        border-radius: 50px;
+        background: rgba(77, 182, 172, 0.12);
+        color: var(--accent);
+        border: 1px solid rgba(77, 182, 172, 0.2);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        box-shadow: 0 4px 12px rgba(77, 182, 172, 0.08);
+      }
+
+      .icon {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.75rem 0;
+      }
+
+      .icon img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .icon img:hover {
+        transform: scale(1.08) rotate(3deg);
+      }
+
+      /* Hide broken image icon when src is empty */
+      img[src=""], img:not([src]) {
+        display: none !important;
+      }
+
+      .temperature {
+        font-size: 4rem;
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: -1.5px;
+        background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.1;
+      }
+
+      /* Min & Max badges */
+      .min-max {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 0.6rem;
+      }
+
+      .weather-min, .weather-max {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 10px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .weather-min {
+        background: rgba(59, 130, 246, 0.08);
+        color: #60a5fa;
+        border: 1px solid rgba(59, 130, 246, 0.15);
+      }
+
+      .weather-min::before {
+        content: '↓';
+        margin-right: 2px;
+      }
+
+      .weather-max {
+        background: rgba(239, 68, 68, 0.08);
+        color: #f87171;
+        border: 1px solid rgba(239, 68, 68, 0.15);
+      }
+
+      .weather-max::before {
+        content: '↑';
+        margin-right: 2px;
+      }
+
+      /* Details Grid (2x2) */
+      .details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+        margin-top: 2rem;
+      }
+
+      .detail-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 18px;
+        padding: 1.2rem 1rem;
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .detail-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .detail-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.09);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.4);
+      }
+
+      .detail-card:hover::before {
+        opacity: 1;
+      }
+
+      .detail-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        filter: drop-shadow(0 0 6px var(--accent-glow));
+        transition: transform 0.3s ease;
+      }
+
+      .detail-card:hover i {
+        transform: scale(1.15) translateY(-2px);
+      }
+
+      .detail-card p:first-of-type {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.4);
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      .detail-card p:last-of-type {
+        font-size: 15px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-top: 4px;
+        margin-bottom: 0;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        .weather-card {
+          padding: 1.75rem 1.25rem;
+        }
+        .city-name {
+          font-size: 1.8rem;
+        }
+        .temperature {
+          font-size: 3.2rem;
+        }
+        .details {
+          gap: 0.75rem;
+        }
+        .detail-card {
+          padding: 1rem 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="weather-card">
+      <!-- Search -->
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search city" class="city-input" />
+        <button class="search-btn">Search</button>
+      </div>
+
+      <!-- Weather Overview -->
+      <div class="overview">
+        <h1 class="city-name">New York</h1>
+        <p class="date-time">Monday, 12 Jan 2026</p>
+        <span class="condition">Clear Sky</span>
+        <div class="icon">
+          <img class="imgIcon" src="" alt="Clear" />
+        </div>
+        <p class="temperature">22°</p>
+        <div class="min-max">
+          <p class="weather-min">Min: 18°</p>
+          <p class="weather-max">Max: 26°</p>
+        </div>
+      </div>
+
+      <!-- Detailed Info -->
+      <section class="details">
+        <article class="detail-card">
+          <i class="fa-solid fa-temperature-half"></i>
+          <p>Feels Like</p>
+          <p>21°</p>
+        </article>
+        <article class="detail-card">
+          <i class="fa-solid fa-droplet"></i>
+          <p>Humidity</p>
+          <p>62%</p>
+        </article>
+        <article class="detail-card">
+          <i class="fa-solid fa-wind"></i>
+          <p>Wind</p>
+          <p>14 km/h</p>
+        </article>
+        <article class="detail-card">
+          <i class="fa-solid fa-gauge-high"></i>
+          <p>Pressure</p>
+          <p>1013 hPa</p>
+        </article>
+      </section>
+    </section>
+    <img src="" alt="" class="img" />
+    <script src="./script.js"></script>
+  </body>
+</html>
