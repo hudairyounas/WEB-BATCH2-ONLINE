@@ -36,12 +36,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //     name: string,
 //     id: number,
 //     bl: boolean,
-//     age: number
+//     age: number,
+//     salary:number
 // } = {
 //     name: "str",
 //     id: 2,
 //     bl:true,
-//     age: 23
+//     age: 12,
+//     salary: 12000
 // }
 // type User = {
 //     name: string,
@@ -82,4 +84,49 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //     address: "karachi"
 // }
 // console.log(Obj);
+// type Age = {
+//     name:string,
+//     age: number,
+// }
+// type Name = {
+//     address:string,
+// }
+// const person: Age & Name = {
+//     name: "ali",
+//     age: 23,
+// }
+// const person2: Age = {
+//     name: "ali",
+//     age: 23,
+// }
+//? array.find(callback(element, index, array), thisArg);
+const numbers = [5, 8, 12, 130, 44];
+// const foundNumber = numbers.find((num:number, idx: number, arr: number[]) => {
+//     console.log(idx);
+//     return num == 12;
+// });
+// console.log(foundNumber); // Output: 12
+// const age = () => {
+// }
+// const course = [
+//     {id: 1, name: "str", fees: 500},
+//     {id: 2, name: "str", fees: 450},
+//     {id: 3, name: "str", fees: 1000}
+// ]
+// array destructuring
+// const arr = [1, 2, 3, 4, 5];
+// const [val1, val2, val3, val4, val5] = arr;
+// console.log(val1, val2, val3, val4, val5)
+// object destructuring
+// const user = {
+//     name: "ali",
+//     age: 23,
+//     address: "karachi"
+// }
+// const { name, age, address } = user;
+// console.log(name, age, address)
+// spread operators
+const arr1 = [1, 2, 3];
+const arr3 = [...arr1, 12, 21, 23, 33];
+console.log(arr3);
 //# sourceMappingURL=script.js.map
