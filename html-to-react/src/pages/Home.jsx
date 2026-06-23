@@ -70,7 +70,6 @@ const Home = () => {
           </h2>
           <div class="testimonial-container">
            {studentsSay.map((item) => {
-
              return <article className="testimonial-card">
               <p>
                 "{item.description}"
