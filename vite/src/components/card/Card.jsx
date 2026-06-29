@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from '../table/Table'
 
-const Card = ({names}) => {
+const Card = ({name, age, email}) => {
   return (
     <div style={{border:"2px solid black", margin:"10px", textAlign:"center"}}>
         {/* <div>
@@ -9,7 +9,7 @@ const Card = ({names}) => {
             <h2>age - {age}</h2>
         </div>
         <Table data={data} /> */}
-        <h1>{names}</h1>
+        <Table name={name}  age={age} email={email}  />
     </div>
   )
 }

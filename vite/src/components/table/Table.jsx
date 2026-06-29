@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Table = ({data}) => {
+const Table = ({name, age, email}) => {
   return (
-    <div>{data}</div>
+    <table>
+        <tr>
+            <td>{name}</td>
+            <td>{age}</td>
+            <td>{email}</td>
+        </tr>
+    </table>
   )
 }
 

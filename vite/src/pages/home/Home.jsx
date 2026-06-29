@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
+import UseState from '../../components/useState/UseState'
 
 
 const Home = () => {
@@ -24,7 +25,14 @@ const data = [
             )
           })
         } */}
-        <Card names="ali" />
+        {/* {
+          data.map((item) => {
+            return(
+              <Card name={item.name} age={item.age} email={item.email} />
+            )
+          })
+        } */}
+        <UseState />
         
     </div>
   )
