@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
 import UseState from '../../components/useState/UseState'
+import Contact from '../../components/contact/Contact'
 
 
 const Home = () => {
@@ -32,7 +33,8 @@ const data = [
             )
           })
         } */}
-        <UseState />
+        {/* <UseState /> */}
+        <Contact />
         
     </div>
   )
