@@ -3,6 +3,7 @@ import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
 import UseState from '../../components/useState/UseState'
 import Contact from '../../components/contact/Contact'
+import UseEffect from '../../components/useEffect/UseEffect'
 
 
 const Home = () => {
@@ -34,7 +35,8 @@ const data = [
           })
         } */}
         {/* <UseState /> */}
-        <Contact />
+        {/* <Contact /> */}
+        <UseEffect />
         
     </div>
   )

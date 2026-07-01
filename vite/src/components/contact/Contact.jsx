@@ -13,11 +13,9 @@ const Contact = () => {
   const [userEmail, setUserEmail] = useState("");
 
   const addContacts = () => {
-
     if (!userName || !userAge || !userEmail) {
-        return alert("Please fill all the fields");
+      return alert("Please fill all the fields");
     }
-
 
     setContacts([
       ...contacts,
@@ -29,10 +27,15 @@ const Contact = () => {
       },
     ]);
 
-    setUserName("")
-    setUserAge("")
-    setUserEmail("")
+    setUserName("");
+    setUserAge("");
+    setUserEmail("");
   };
+
+
+  const delContact = (id) => {
+    setContacts(contacts.filter((val) => val.id !== id))
+  }
   return (
     <>
       <input
@@ -73,7 +76,8 @@ const Contact = () => {
                 <td>{val.age}</td>
                 <td>{val.email}</td>
                 <td>
-                    <button>Delete</button>
+                  <button onClick={() => delContact(val.id)}>Delete</button>
+                  <button>Update</button>
                 </td>
               </tr>
             );
