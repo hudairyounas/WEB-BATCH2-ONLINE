@@ -4,6 +4,7 @@ import Card from '../../components/card/Card'
 import UseState from '../../components/useState/UseState'
 import Contact from '../../components/contact/Contact'
 import UseEffect from '../../components/useEffect/UseEffect'
+import Todo from '../../components/todo/Todo'
 
 
 const Home = () => {
@@ -36,7 +37,8 @@ const data = [
         } */}
         {/* <UseState /> */}
         {/* <Contact /> */}
-        <UseEffect />
+        {/* <UseEffect /> */}
+        <Todo />
         
     </div>
   )
