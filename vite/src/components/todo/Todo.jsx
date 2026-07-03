@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Todo = () => {
   const [tasks, setTasks] = useState([]); //? ["task1", "task2", "task3"]
-  const [taskData, setTaskData] = useState(""); //? "task1"
+  const [taskData, setTaskData] = useState(""); //? "apple"
+//? ["task1", "task2", "task3"]
+//? "task1"
+  const handleTaskData = () => {
 
-  const handleTaskInput = () => {
-
-    // check task is already exist
     if (tasks.includes(taskData)) {
-        return alert("Task is already exist");
+      return alert("Task already exists");
     }
 
     if (taskData.trim() !== "") {
-        setTasks([...tasks, taskData]);
-        setTaskData("")
+      setTasks([...tasks, taskData]);
+      setTaskData("")
     } else {
-        return alert("Please enter your task");
+      return alert("Please enter a task");
     }
   };
-
-  const handleDelete = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index))
-  };
-
 
   return (
     <div>
@@ -33,13 +28,13 @@ const Todo = () => {
           value={taskData}
           onChange={(e) => setTaskData(e.target.value)}
         />
-        <button onClick={handleTaskInput}>Add task</button>
+        <button onClick={handleTaskData}>Add Task</button>
       </div>
       <div>
-        {tasks.map((task, index) => {
+        {tasks.map((task) => {
           return (
             <ul>
-              <li>{task} <button onClick={() => handleDelete(index)}>Delete</button> <button>Edit</button></li>
+              <li>{task}</li>
             </ul>
           );
         })}
