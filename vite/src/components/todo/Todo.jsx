@@ -28,7 +28,7 @@ const Todo = () => {
           value={taskData}
           onChange={(e) => setTaskData(e.target.value)}
         />
-        <button onClick={handleTaskData}>Add Task</button>
+        <button onClick={handleTaskData} className="text-red-900 bg-green-800">Add Task</button>
       </div>
       <div>
         {tasks.map((task) => {
@@ -39,6 +39,7 @@ const Todo = () => {
           );
         })}
       </div>
+      <h1>Hello</h1>
     </div>
   );
 };

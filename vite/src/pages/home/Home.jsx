@@ -5,6 +5,7 @@ import UseState from '../../components/useState/UseState'
 import Contact from '../../components/contact/Contact'
 import UseEffect from '../../components/useEffect/UseEffect'
 import Todo from '../../components/todo/Todo'
+import TailwindCss from '../../components/tailwindCss/TailwindCss'
 
 
 const Home = () => {
@@ -38,7 +39,8 @@ const data = [
         {/* <UseState /> */}
         {/* <Contact /> */}
         {/* <UseEffect /> */}
-        <Todo />
+        {/* <Todo /> */}
+        <TailwindCss />
         
     </div>
   )
