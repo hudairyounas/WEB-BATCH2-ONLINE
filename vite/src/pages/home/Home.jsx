@@ -6,6 +6,7 @@ import Contact from '../../components/contact/Contact'
 import UseEffect from '../../components/useEffect/UseEffect'
 import Todo from '../../components/todo/Todo'
 import TailwindCss from '../../components/tailwindCss/TailwindCss'
+import Form from '../../components/form/Form'
 
 
 const Home = () => {
@@ -16,7 +17,6 @@ const data = [
   {name:"osama", age:18, email:"[EMAIL_ADDRESS]"},
   {name:"hassan", age:25, email:"[EMAIL_ADDRESS]"}
 ]
-
 
   return (
     <div className='home'>
@@ -38,10 +38,10 @@ const data = [
         } */}
         {/* <UseState /> */}
         {/* <Contact /> */}
-        <UseEffect />
+        {/* <UseEffect /> */}
         {/* <Todo /> */}
-        {/* <TailwindCss /> */}=
-        
+        {/* <TailwindCss /> */}
+        <Form />
     </div>
   )
 }
