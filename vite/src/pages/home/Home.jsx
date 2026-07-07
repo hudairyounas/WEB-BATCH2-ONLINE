@@ -38,9 +38,9 @@ const data = [
         } */}
         {/* <UseState /> */}
         {/* <Contact /> */}
-        {/* <UseEffect /> */}
+        <UseEffect />
         {/* <Todo /> */}
-        <TailwindCss />
+        {/* <TailwindCss /> */}=
         
     </div>
   )
