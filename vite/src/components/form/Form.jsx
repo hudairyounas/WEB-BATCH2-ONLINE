@@ -33,6 +33,7 @@ const Form = () => {
 
   return (
     <form>
+      <h1>Form validation</h1>
       <label htmlFor="userName">Name: </label>
       <input
         className="border-2 border-gray-500"

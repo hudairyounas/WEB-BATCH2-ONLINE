@@ -13,16 +13,16 @@ const UseEffect = () => {
   console.log("component render")
 
 
-  // const fetchData = async () => {
-  //   const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  //   const data = await res.json()
-  //   setData(data)
-  //   console.log(data)
-  // }
+  const fetchData = async () => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const data = await res.json()
+    setData(data)
+    console.log(data)
+  }
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <div>
