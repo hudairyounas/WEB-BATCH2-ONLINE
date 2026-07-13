@@ -16,6 +16,9 @@ const Navbar = () => {
         <NavLink to="/product">
             Product
         </NavLink>
+        <NavLink to="/counter">
+            Counter
+        </NavLink>
     </div>
   )
 }
