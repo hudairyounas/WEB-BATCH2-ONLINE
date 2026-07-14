@@ -3,12 +3,17 @@ import { useSelector } from 'react-redux'
 
 const Counter = () => {
 
-
-    const count = useSelector((state) => state.counterSlice.userName)
+  const count = useSelector((store) => store.counterSlice.count);
+  const username = useSelector((store) => store.counterSlice.userName);
+  const user = useSelector((store) => store)
+  // console.log(count, username)
+  // console.log(user)
+  console.log(user)
 
   return (
     <div>
-        <h1>Count: {count}</h1>
+      <p>{count}</p>
+      <p>{username}</p>
     </div>
   )
 }
