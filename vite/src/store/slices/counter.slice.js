@@ -10,29 +10,35 @@ export const getPosts = createAsyncThunk(
     }
 );
 
-export const counterSlice = createSlice({
+const counterSlice = createSlice({
     name: "counter",
     initialState: {
-      count: 5,
-      userName: "Hudair",
-      isLoading: false,
-      error: null,
-      posts: []
+      count: 0,
+      userName: "",
+      age: "",
+      phone: "",
     },
     // action creators
     reducers: {
       increment: (state) => {
         state.count += 1;
-      }
+      },
+      decrement: (state) => {
+        state.count -= 1;
+      },
+      changeName: (state, action) => {
+        console.log(action.payload)
+        state.userName = action.payload;
+      },
+      changeAge: (state, action) => {
+        state.age = action.payload;
+      },
+      changePhone: (state, action) => {
+        state.phone = action.payload;
+      },
     },
-    extraReducers: (builder) => {
-      builder.addCase(getPosts.fulfilled, (state, action)=> {
-        state.posts = action.payload
-      }).addCase(getPosts.rejected, (state, action)=> {
-        state.error = action.payload
-      })
-    }
 })
 
 
+export const { increment, decrement, changeName, changeAge, changePhone } = counterSlice.actions
 export default counterSlice.reducer

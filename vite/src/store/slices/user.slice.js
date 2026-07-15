@@ -10,8 +10,8 @@ export const userSlice = createSlice({
     },
   },
   reducers: {
-    changeName: (state) => {
-      state.user.name = "Ali";
+    changeName: (state, action) => {
+      state.user.name = action.payload;
     },
   },
 });
