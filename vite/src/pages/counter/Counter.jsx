@@ -1,48 +1,32 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeName, decrement, increment, changeAge, changePhone } from '../../store/slices/counter.slice';
+import { changeAge, changePassword, changeUsername } from '../../store/slices/user.slice'
 
 const Counter = () => {
 
-  // const count = useSelector((store) => store.counterSlice.count);
-  // const username = useSelector((store) => store.counterSlice.userName);
-  // const user = useSelector((store) => store.userSlice.user.name)
-  // // console.log(count, username)
-  // // console.log(user)
-  // console.log(user)
-
   const dispatch = useDispatch()
+  const userName = useSelector((store)=>store.userSlice.user1.userName)
+  const userAge = useSelector((store)=>store.userSlice.user1.age)
+  const userPassword = useSelector((store)=>store.userSlice.user1.password)
 
-  const count = useSelector((store) => store.counterSlice.count);
-  const username = useSelector((store) => store.counterSlice.userName);
-
-  const incrementFunc =() =>{
-     dispatch(increment())
+  const userNameChangeHandler = (e)=>{
+    dispatch(changeUsername(e.target.value))
   }
-
-  const decrementFunc =() =>{
-   dispatch(decrement()) 
+  const userAgeChangeHandler = (e)=>{
+    dispatch(changeAge(e.target.value))
   }
-
-  // useEffect(() => {
-    // dispatch(changeName("gvfghvgvgf")) 
-  // }, []);
-  // username
-  // age
-  // phone
-
-  // increment
-  // decrement
+  const userPasswordChangeHandler = (e)=>{
+    dispatch(changePassword(e.target.value))
+  }
 
   return (
     <div>
-    <button onClick={incrementFunc} className='p-2 bg-red-500 rounded cursor-pointer'>+</button>
-    <h1>{count}</h1>
-    <button onClick={decrementFunc} className='p-2 bg-green-500 rounded cursor-pointer'>-</button>
-    <input type="text" onChange={(e) => dispatch(changeName(e.target.value))} className='border-2 border-gray-500' />
-    <h1>{username}</h1>
-    <input type="text" onChange={(e) => dispatch(changeAge(e.target.value))} className='border-2 border-gray-500' />
-    <input type="text" onChange={(e) => dispatch(changePhone(e.target.value))} className='border-2 border-gray-500' />
+      <h1>My name is {userName}</h1>
+      <h1>My age is {userAge}</h1>
+      <h1>My password is {userPassword}</h1>
+      <input type="text" onChange={userNameChangeHandler} placeholder='enter your name' />
+      <input type="text" onChange={userAgeChangeHandler} placeholder='enter your age'/>
+      <input type="text" onChange={userPasswordChangeHandler} placeholder='enter your password'/>
     </div>
   )
 }
