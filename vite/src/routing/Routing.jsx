@@ -6,6 +6,7 @@ import About from "../pages/about/About";
 import Navbar from "../components/navbar/Navbar";
 import Product from "../pages/product/Product";
 import Counter from "../pages/counter/Counter";
+import Post from "../pages/post/Post";
 
 const Routing = () => {
   return (
@@ -17,6 +18,7 @@ const Routing = () => {
         <Route path="/about" element={<About />} />
         <Route path="/product" element={<Product />} />
         <Route path="/counter" element={<Counter />} />
+        <Route path="/post" element={<Post />} />
       </Routes>
     </>
   );
