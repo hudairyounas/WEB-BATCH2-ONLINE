@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts, deletePost, getPost } from "../../store/slices/post.slice";
+import Model from "../../components/model/Model";
 
 const Post = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [post, setPost] = useState(null);
 
   const dispatch = useDispatch();
 
   const posts = useSelector((store) => store.postSlice.post);
   const loading = useSelector((store) => store.postSlice.isLoading);
+
+   function openModal(post) {
+    setPost(post)
+    setIsOpen(true);
+  }
+
 
   const handleSubmit = () => {
     let data = {
@@ -25,7 +34,7 @@ const Post = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <label htmlFor="title">Title:</label>
       <input
         onChange={(e) => setTitle(e.target.value)}
@@ -57,8 +66,8 @@ const Post = () => {
 
       <div>
         {loading ? (
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         ) : (
           posts.map((post) => (
@@ -66,12 +75,15 @@ const Post = () => {
               <h1>{post.title}</h1>
               <p>{post.description}</p>
               <p>{post.id}</p>
-              <button onClick={() => dispatch(deletePost(post.id))}>Del</button>
+              <button className="bg-red-500 text-white px-2 rounded-lg" onClick={() => dispatch(deletePost(post.id))}>Del</button>
+              <button className="bg-green-500 text-white px-2 rounded-lg" onClick={()=>openModal(post)}>Update</button>
             </div>
           ))
         )}
       </div>
-    </div>
+
+      <Model modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} post={post} />
+    </>
   );
 };
 

@@ -1,6 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
-    import { db } from "../../config/firebase";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 const addPosts = createAsyncThunk("post/addPosts", async (postData) => {
   try {
@@ -11,26 +18,29 @@ const addPosts = createAsyncThunk("post/addPosts", async (postData) => {
   }
 });
 
-
 const getPost = createAsyncThunk("posts/getPost", async () => {
-  try{
+  try {
     const querySnap = await getDocs(collection(db, "posts"));
     return querySnap.docs.map((post) => ({ id: post.id, ...post.data() }));
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
   }
-})
+});
 
 // update post
 
 const updatePost = createAsyncThunk("post/updatePost", async (postData) => {
   try {
-    await updateDoc(doc(db, "posts", postData.id), postData);
+    const postRef = doc(db, "posts", postData.id);
+    await updateDoc(postRef, {
+      title: postData.title,
+      description: postData.description,
+    });
     return postData;
   } catch (e) {
     console.error("Error updating document: ", e);
   }
-})
+});
 
 // delete post
 const deletePost = createAsyncThunk("post/deletePost", async (postID) => {
@@ -40,7 +50,7 @@ const deletePost = createAsyncThunk("post/deletePost", async (postID) => {
   } catch (e) {
     console.error("Error deleting document: ", e);
   }
-})
+});
 
 const postSlice = createSlice({
   name: "post",
@@ -61,7 +71,8 @@ const postSlice = createSlice({
       .addCase(addPosts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      }).addCase(getPost.pending, (state) => {
+      })
+      .addCase(getPost.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getPost.fulfilled, (state, action) => {
@@ -71,17 +82,21 @@ const postSlice = createSlice({
       .addCase(getPost.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      }).addCase(updatePost.pending, (state) => {
+      })
+      .addCase(updatePost.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(updatePost.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.post = state.post.map((post) => post.id === action.payload.id ? action.payload : post);
+        state.post = state.post.map((post) =>
+          post.id === action.payload.id ? action.payload : post,
+        );
       })
       .addCase(updatePost.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      }).addCase(deletePost.pending, (state) => {
+      })
+      .addCase(deletePost.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(deletePost.fulfilled, (state, action) => {
@@ -91,7 +106,7 @@ const postSlice = createSlice({
       .addCase(deletePost.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      })
+      });
   },
 });
 
