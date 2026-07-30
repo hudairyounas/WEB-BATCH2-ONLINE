@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -12,13 +13,26 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let formInfo = { email, password };
+    let formInfo = { fullName, email, password };
     dispatch(register(formInfo));
     navigate("/");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="mt-10">
+      <div>
+        <label htmlFor="name">Username</label>
+        <input
+          className="border-2 border-red-500 px-2 py-1 rounded-md"
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          name="fullName"
+          id="fullName"
+          autoComplete="off"
+          required
+        />
+      </div>
       <div>
         <label htmlFor="email">Email</label>
         <input
