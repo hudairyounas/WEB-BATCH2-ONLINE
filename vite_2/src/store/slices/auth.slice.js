@@ -6,7 +6,16 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
-import { addDoc, collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 
 const register = createAsyncThunk(
   "auth/register",
@@ -17,7 +26,7 @@ const register = createAsyncThunk(
       password,
     );
 
-    await addDoc(collection(db, "users"), {
+    await setDoc(doc(db, "users", userCredential.user.uid), {
       uid: userCredential.user.uid,
       fullName,
       email,
@@ -45,15 +54,32 @@ const fetchCurrent = () => (dispatch) => {
   dispatch(setLoading(true));
   const unsubscribe = onAuthStateChanged(auth, async (user) => {
     if (user) {
-      console.log("user => ", user)
-      const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      const querySnapshot = await getDocs(q)
-      let userProfile = {}
-      querySnapshot.forEach((doc) => {
-        userProfile = { id: doc.id, ...doc.data() }
-      })
-      console.log("userProfile => ", userProfile)
-      dispatch(setUser(userProfile));
+      console.log("user => ", user);
+
+      // const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      // const querySnapshot = await getDocs(q);
+      // let userProfile = {};
+      // querySnapshot.forEach((doc) => {
+      //   userProfile = { id: doc.id, ...doc.data() };
+      // });
+
+
+      const docSnap = await getDoc(doc(db, "users", user.uid));
+
+      if (!docSnap.exists()) {
+        console.log("No such document found")
+      }
+
+      console.log(docSnap.data())
+
+      // console.log("userProfile", userProfile);
+
+      dispatch(
+        setUser({
+          userId: user.uid,
+          ...docSnap.data(),
+        }),
+      );
     } else {
       dispatch(logout());
     }
