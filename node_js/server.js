@@ -1,13 +1,21 @@
+
 const express = require("express");
 
-const app = express()
-const port = 5000;
+//? intializing server
+const app = express();
 
-
-app.get("/", (req, res) => {
-    res.send("<h1>Hello from express</h1>")
-});
-
-app.listen(port, () => {
-    console.log(`server is running on http://localhost:${port}`)
+ 
+//? setting up api
+app.get("/products", (req, res) => {
+   res.json({ message: "welcome to simple nodejs server"})
 })
+
+
+//? starting server
+app.listen(5000, () => {
+    console.log("server started on port 5000");
+})
+
+// axios.get("http://localhost:5000/")
+
+//? http://localhost:5000/products
