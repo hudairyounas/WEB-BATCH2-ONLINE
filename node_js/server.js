@@ -10,9 +10,7 @@ app.use(cors());
 
 async function connectDB() {
   try {
-    await mongoose.connect(
-      "mongodb://localhost:27017/fb-b2",
-    );
+    await mongoose.connect("mongodb://localhost:27017/fb-b2");
     // await mongoose.connect("mongodb://localhost:27017/b-2")
     console.log("MongoDB connected");
   } catch (error) {
@@ -85,10 +83,106 @@ async function connectDB() {
 
 // });
 
-const ProductSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  price: { type: Number, required: true },
-  description: { type: String, required: true },
+// const ProductSchema = new mongoose.Schema({
+//   title: { type: String, required: true },
+//   price: { type: Number, required: true },
+//   description: { type: String, required: true },
+//   email: {
+//     type: String,
+//     unique: true,
+//     validate: {
+//       validator: function (v) {
+//         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+//       },
+//       message: "Please enter a valid email address",
+//     },
+//     required: true,
+//   },
+//    date: { type: Date, default: Date.now },
+// }, {timestamps: true});
+
+// const Product = mongoose.model("Product", ProductSchema);
+
+// // image upload and url get
+// const storage = multer.diskStorage({
+//   destination: "uploads/",
+//   filename: (req, file, cb) => {
+//     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+//     cb(null, uniqueSuffix + path.extname(file.originalname));
+//   },
+// });
+
+// const upload = multer({ storage });
+
+// app.post("/register", upload.single("image"), async (req, res) => {
+//   try {
+//     const { name, email, password } = req.body;
+//     const file = req.file;
+
+//     if (!name || !email || !password || !file) {
+//       return res.status(400).json({
+//         message: "All fields are required",
+//       });
+//     }
+
+//     const image = `http://localhost:5000/uploads/${file.filename}`;
+
+//     const userData = await User.create({
+//       name,
+//       email,
+//       password,
+//       image,
+//     });
+
+//     res.status(200).json({
+//       message: "User registered successfully",
+//       data: userData,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({
+//       message: "Internal server error",
+//     });
+//   }
+// });
+
+// app.post("/product", async (req, res) => {
+//   try {
+//     const {title,price,description,email} = req.body;
+
+//     if(!title || !price || !description || !email){
+//       return res.status(400).json({message: "Please provide a title, price, description and email"});
+//     }
+
+//     const product = await Product.create({title, price, description, email});
+
+//     return res.status(200).json({message: "Product created successfully", product});
+
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({message: "Internal server error"});
+//   }
+// });
+
+// app.get("/product", async (req, res)=> {
+//   try {
+
+//     const {title} = req.query;
+
+//     if(!title){
+//       return res.status(400).json({message: "Please provide a title"});
+//     }
+
+//     const product = await Product.findOne({title});
+//     return res.status(200).json({message: "Product fetched successfully", product});
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({message: "Internal server error"});
+//   }
+// })
+
+const UserSchema = mongoose.Schema({
+  name: { type: String, required: true, minLength: 3, maxLength: 50 },
   email: {
     type: String,
     unique: true,
@@ -100,100 +194,61 @@ const ProductSchema = new mongoose.Schema({
     },
     required: true,
   },
-   date: { type: Date, default: Date.now },
+  phone: {type: Number, required: true, minLength: 11, maxLength: 11},
+  password: { type: String, required: true },
 }, {timestamps: true});
 
+const User = mongoose.model("User", UserSchema);
 
 
-const Product = mongoose.model("Product", ProductSchema);
-
-// image upload and url get
-const storage = multer.diskStorage({
-  destination: "uploads/",
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage });
-
-app.post("/register", upload.single("image"), async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const file = req.file;
+    const {name, email, password, phone} = req.body;
 
-    if (!name || !email || !password || !file) {
-      return res.status(400).json({
-        message: "All fields are required",
-      });
-    }
+    if (!name || !email || !password || !phone){
+      return res.status(400).json({message: "Please provide a name, email, password and phone"});
+    };
 
-    const image = `http://localhost:5000/uploads/${file.filename}`;
+    const userData = await User.create({name,email,password,phone});
+    return res.status(200).json({message: "User created successfully", userData});
 
-    const userData = await User.create({
-      name,
-      email,
-      password,
-      image,
-    });
-
-    res.status(200).json({
-      message: "User registered successfully",
-      data: userData,
-    });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      message: "Internal server error",
-    });
+    return res.status(500).json({message: "Internal server error", error: error.message});
   }
 });
 
 
-app.post("/product", async (req, res) => {
+
+
+
+app.get("/user", async (req,res)=> {
   try {
-    const {title,price,description,email} = req.body;
+    // const userData = await User.find();
 
-    if(!title || !price || !description || !email){
-      return res.status(400).json({message: "Please provide a title, price, description and email"});
-    }
+    const {email} = req.query;
 
-    const product = await Product.create({title, price, description, email});
-    
-    return res.status(200).json({message: "Product created successfully", product});
-    
+    if (!email) {
+      return res.status(400).json({message: "Please provide a email"});
+    };
+
+    const userData = await User.findOne({email});
+
+    if (!userData) {
+      return res.status(400).json({message: "User not found"});
+    };
+
+    return res.status(200).json({message: "User fetched successfully", userData});
   } catch (error) {
     console.log(error);
-    return res.status(500).json({message: "Internal server error"});
-  }
-});
-
-
-app.get("/product", async (req, res)=> {
-  try {
-
-    const {title} = req.query;
-
-    if(!title){
-      return res.status(400).json({message: "Please provide a title"});
-    }
-
-    const product = await Product.findOne({title});
-    return res.status(200).json({message: "Product fetched successfully", product});
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({message: "Internal server error"});
+    return res.status(500).json({message: "Internal server error", error: error.message});
   }
 })
-
-
 
 app.listen(5000, async () => {
   await connectDB();
   console.log("server started on port 5000");
 });
-
 
 //? http://localhost:5000/products
 //? 22
