@@ -181,69 +181,131 @@ async function connectDB() {
 //   }
 // })
 
-const UserSchema = mongoose.Schema({
-  name: { type: String, required: true, minLength: 3, maxLength: 50 },
-  email: {
-    type: String,
-    unique: true,
-    validate: {
-      validator: function (v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const UserSchema = mongoose.Schema(
+  {
+    name: { type: String, required: true, minLength: 3, maxLength: 50 },
+    email: {
+      type: String,
+      unique: true,
+      validate: {
+        validator: function (v) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        },
+        message: "Please enter a valid email address",
       },
-      message: "Please enter a valid email address",
+      required: true,
     },
-    required: true,
+    phone: { type: Number, required: true, minLength: 11, maxLength: 11 },
+    password: { type: String, required: true },
   },
-  phone: {type: Number, required: true, minLength: 11, maxLength: 11},
-  password: { type: String, required: true },
-}, {timestamps: true});
+  { timestamps: true },
+);
 
 const User = mongoose.model("User", UserSchema);
 
-
 app.post("/register", async (req, res) => {
   try {
-    const {name, email, password, phone} = req.body;
+    const { name, email, password, phone } = req.body;
 
-    if (!name || !email || !password || !phone){
-      return res.status(400).json({message: "Please provide a name, email, password and phone"});
-    };
+    if (!name || !email || !password || !phone) {
+      return res
+        .status(400)
+        .json({ message: "Please provide a name, email, password and phone" });
+    }
 
-    const userData = await User.create({name,email,password,phone});
-    return res.status(200).json({message: "User created successfully", userData});
-
+    const userData = await User.create({ name, email, password, phone });
+    return res
+      .status(200)
+      .json({ message: "User created successfully", userData });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({message: "Internal server error", error: error.message});
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 });
 
-
-
-
-
-app.get("/user", async (req,res)=> {
+app.get("/user", async (req, res) => {
   try {
     // const userData = await User.find();
 
-    const {email} = req.query;
+    const { email } = req.query;
 
     if (!email) {
-      return res.status(400).json({message: "Please provide a email"});
-    };
+      return res.status(400).json({ message: "Please provide a email" });
+    }
 
-    const userData = await User.findOne({email});
+    const userData = await User.findOne({ email });
 
     if (!userData) {
-      return res.status(400).json({message: "User not found"});
-    };
+      return res.status(400).json({ message: "User not found" });
+    }
 
-    return res.status(200).json({message: "User fetched successfully", userData});
+    return res
+      .status(200)
+      .json({ message: "User fetched successfully", userData });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({message: "Internal server error", error: error.message});
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
-})
+});
+
+app.put("/update/user/:id", async (req, res) => {
+  try {
+    const { name, email, password, phone } = req.body;
+    const { id } = req.params;
+
+    if (!name || !email || !password || !phone) {
+      return res
+        .status(400)
+        .json({ message: "Please provide a name, email, password and phone" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { name, email, password, phone },
+      { new: true },
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "User updated successfully", updatedUser });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+});
+
+app.delete("/delete/user/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ message: "Please provide a user id" });
+    }
+
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "User deleted successfully", deletedUser });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+});
 
 app.listen(5000, async () => {
   await connectDB();
