@@ -4,7 +4,7 @@ import { createUser, getUser, deleteUser, updateUser } from "../controllers/user
 const router = Router();
 
 router.get("/", getUser)
-router.get("/create", createUser)
+router.post("/create", createUser)
 router.get("/delete", deleteUser)
 router.get("/update", updateUser)
 
