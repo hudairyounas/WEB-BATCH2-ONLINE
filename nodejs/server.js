@@ -1,11 +1,31 @@
 import express from "express";
 import multer from "multer";
+import mongoose from "mongoose";
 
 const app = express();
 const PORT = 5000;
 app.use(express.json());
 
 app.use("/uploads", express.static("uploads"));
+
+
+
+
+
+async function main() {
+  await mongoose.connect('mongodb://futureplix2_db_user:DzJXzpv8BhkFds5x@ac-ccfqnpe-shard-00-00.nxbmxsx.mongodb.net:27017,ac-ccfqnpe-shard-00-01.nxbmxsx.mongodb.net:27017,ac-ccfqnpe-shard-00-02.nxbmxsx.mongodb.net:27017/?ssl=true&replicaSet=atlas-j7i8bo-shard-0&authSource=admin&appName=Cluster0');
+  console.log("connected to mongodb");
+}
+
+
+
+
+
+
+
+
+
+
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World get" });
@@ -104,7 +124,8 @@ app.post("/upload", upload.single("image"), (req, res) => {
   res.json({ data: req.file });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await main();
   console.log(`server is running at port number ${PORT}`);
 });
 
@@ -126,3 +147,8 @@ app.listen(PORT, () => {
 //? https://github.com/openai
 //? https://github.com/anthropics
 //? https://github.com/hudairyounas?tab=repositories
+
+//? SQL
+//? MySQL => mongodb => JSON
+
+//? MERN => MongoDB => Express => React => Nodejs
