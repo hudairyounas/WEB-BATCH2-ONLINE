@@ -1,31 +1,27 @@
 import express from "express";
 import multer from "multer";
 import mongoose from "mongoose";
+import "dotenv/config";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 app.use("/uploads", express.static("uploads"));
 
-
-
-
-
 async function main() {
-  await mongoose.connect('mongodb://futureplix2_db_user:DzJXzpv8BhkFds5x@ac-ccfqnpe-shard-00-00.nxbmxsx.mongodb.net:27017,ac-ccfqnpe-shard-00-01.nxbmxsx.mongodb.net:27017,ac-ccfqnpe-shard-00-02.nxbmxsx.mongodb.net:27017/?ssl=true&replicaSet=atlas-j7i8bo-shard-0&authSource=admin&appName=Cluster0');
-  console.log("connected to mongodb");
+  try {
+    await mongoose.connect(
+      "mongodb://futureplix2_db_user:DzJXzpv8BhkFds5x@ac-ccfqnpe-shard-00-00.nxbmxsx.mongodb.net:27017,ac-ccfqnpe-shard-00-01.nxbmxsx.mongodb.net:27017,ac-ccfqnpe-shard-00-02.nxbmxsx.mongodb.net:27017/?ssl=true&replicaSet=atlas-j7i8bo-shard-0&authSource=admin&appName=Cluster0",
+    );
+    console.log("connected to mongodb");
+  } catch (error) {
+    console.log("Error in mongodb connection: ", error);
+    process.exit(1);
+  }
 }
 
-
-
-
-
-
-
-
-
-
+//? 22
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World get" });
@@ -41,7 +37,7 @@ app.post("/", (req, res) => {
     });
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: `Hello ${name} and your age is ${age} and password is ${password}`,
   });
@@ -63,7 +59,7 @@ app.post("/product/:abc/xyz", (req, res) => {
       .json({ success: false, message: "Please enter your city" });
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: `Hello abc is ${abc} and xyz is ${xyz} and your city is ${city}`,
   });
@@ -95,7 +91,7 @@ app.post("/product/create", (req, res) => {
 //   console.log(req.headers)
 
 //   if (!name) {
-//     res.status(400).json({message: "You are not authorized"})
+//     return res.status(400).json({message: "You are not authorized"})
 //   }
 
 //   return res.status(200).json({message: "You are authorized", user:name})
@@ -121,7 +117,58 @@ const upload = multer({ storage: storage });
 
 app.post("/upload", upload.single("image"), (req, res) => {
   console.log(req.file);
-  res.json({ data: req.file });
+  return res.json({ data: req.file });
+});
+
+const userSchema = new mongoose.Schema(
+  {
+    name: { type: String, minLength: 3, maxLength: 20, required: true },
+    email: { type: String, unique: true, required: true },
+    password: { type: String, minLength: 5, maxLength: 20, required: true },
+    date: { type: Date, default: Date.now() },
+    active: { type: Boolean, default: false },
+    role: { type: String, enum: ["admin", "user"], default: "user" },
+  },
+  { timestamps: true },
+);
+
+const userModel = mongoose.model("user", userSchema);
+
+app.post("/user", async (req, res) => {
+  try {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Please enter your name and email and password",
+    });
+  }
+
+  const user = await userModel.create({
+    name,
+    email,
+    password,
+  });
+
+  if (!user) {
+    return res.status(500).json({
+      success: false,
+      message: "user not created",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    message: "user data created successfully",
+    user,
+  });
+} catch (error) {
+  return res.status(500).json({
+    success: false,
+    message: "error in user creation",
+  });
+}
 });
 
 app.listen(PORT, async () => {
@@ -149,6 +196,6 @@ app.listen(PORT, async () => {
 //? https://github.com/hudairyounas?tab=repositories
 
 //? SQL
-//? MySQL => mongodb => JSON
+//? Non-SQL => mongodb => JSON
 
 //? MERN => MongoDB => Express => React => Nodejs
