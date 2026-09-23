@@ -136,40 +136,144 @@ const userModel = mongoose.model("user", userSchema);
 
 app.post("/user", async (req, res) => {
   try {
-  const { name, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-  if (!name || !email || !password) {
-    return res.status(400).json({
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter your name and email and password",
+      });
+    }
+
+    const user = await userModel.create({
+      name,
+      email,
+      password,
+    });
+
+    if (!user) {
+      return res.status(500).json({
+        success: false,
+        message: "user not created",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "user data created successfully",
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({
       success: false,
-      message: "Please enter your name and email and password",
+      message: "error in user creation",
     });
   }
+});
 
-  const user = await userModel.create({
-    name,
-    email,
-    password,
-  });
+
+
+app.get("/user/search/:id", async (req,res) => {
+  // const {name} = req.query;
+
+  // if (!name) {
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: "Please enter your name"
+  //   })
+  // }
+
+
+  const {id} = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      success: false,
+      message: "Please enter your id"
+    })
+  }
+
+  const user = await userModel.findOne({_id: id});
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "user not found"
+    })
+  }
+
+  return res.status(200).json({
+    success: true,
+    message: "user data found successfully",
+    user
+  })
+})
+
+
+
+app.post("/user/update/:id", async (req,res) => {
+  const {id} =req.params;
+  const {name,email,password} = req.body;
+
+  if (!id) {
+    return res.status(400).json({
+      success: false,
+      message: "Please enter your id"
+    })
+  }
+
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter your name and email and password",
+      });
+    }
+
+    const user = await userModel.findByIdAndUpdate({_id: id}, {name,email,password}, {new: true});
+
+    if (!user) {
+      return res.status(500).json({
+        success: false,
+        message: "user not updated",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "user data updated successfully",
+      user,
+    });
+});
+
+
+app.post("/user/delete/:id", async (req,res) => {
+  const {id} = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      success: false,
+      message: "Please enter your id"
+    })
+  }
+
+  const user = await userModel.findByIdAndDelete({_id: id});
 
   if (!user) {
     return res.status(500).json({
       success: false,
-      message: "user not created",
+      message: "user not deleted",
     });
   }
 
   return res.status(200).json({
     success: true,
-    message: "user data created successfully",
+    message: "user data deleted successfully",
     user,
   });
-} catch (error) {
-  return res.status(500).json({
-    success: false,
-    message: "error in user creation",
-  });
-}
 });
+
+
+
 
 app.listen(PORT, async () => {
   await main();
