@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 
 const app = express();
 
@@ -12,25 +13,29 @@ const PORT = 5000;
 //? middleware 1
 app.use((req, res, next) => {
   console.log("Logger middleware 1");
-//   check token for login user
-    let token = req.headers.authorization
-    if (token) {
-        next();
-    }
-    else{
-        res.send("Login first")
-    }
+  req.user = "Bilal"
 
+  let date = new Date().toLocaleDateString();
+  fs.appendFileSync("logs.txt", req.method + " " + date + "\n")
+
+  console.log(req.method, date)
+  next();
 });
+
+//? req modify
+//? header modify
+
+
 
 //? middleware 2
 app.use((req, res, next) => {
   console.log("Logger middleware 2");
-  res.send("Hacked by middleware 2")
   next();
 });
 
 app.get("/", (req, res) => {
+  console.log(req.user);
+  
   res.send("Hello World");
 });
 
