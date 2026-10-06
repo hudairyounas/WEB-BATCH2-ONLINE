@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
+import { sendEmail } from "../utils/email.js";
 
 
 export const signupController = async (req, res) => {
@@ -21,6 +22,8 @@ export const signupController = async (req, res) => {
 
 
     const user = await User.create({ username, email, password });
+
+    await sendEmail(email);
 
     return res.status(201).json({
       success: true,
@@ -57,8 +60,8 @@ export const loginController = async (req, res) => {
       username: user.username,
       email: user.email,
       role: user.role,
-    };
-
+    }; 
+//? hudairyounas@gmail.com
     const token = jwt.sign({ userData }, process.env.JWT_SECRET, {
         expiresIn: "1h",
     });
