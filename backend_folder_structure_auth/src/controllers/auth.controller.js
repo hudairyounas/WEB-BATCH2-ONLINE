@@ -20,10 +20,11 @@ export const signupController = async (req, res) => {
         });
     }
 
+    const otp = Math.floor(1000 + Math.random() * 9000).toString();
 
-    const user = await User.create({ username, email, password });
+    const user = await User.create({ username, email, password, otp });
 
-    await sendEmail(email);
+    await sendEmail(email, otp);
 
     return res.status(201).json({
       success: true,
@@ -37,6 +38,56 @@ export const signupController = async (req, res) => {
     });
   }
 };
+
+
+
+export const verifyOtpController = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        message: "Invalid email",
+      });
+    }
+
+    if(user.isVerified){
+      return res.status(400).json({
+        message: "User is already verified",
+      });
+    }
+
+    if(user.otp !== String(otp).trim()){
+      return res.status(400).json({
+        message: "Invalid OTP",
+      });
+    }
+
+    user.isVerified = true;
+    user.otp= undefined;
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP verified successfully",
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
+
+
 
 // ? Login Controller
 export const loginController = async (req, res) => {

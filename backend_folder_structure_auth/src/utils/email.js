@@ -10,12 +10,12 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
-export const sendEmail = async (email) => {
+export const sendEmail = async (email, otp) => {
     await transporter.sendMail({
         from: process.env.SMTP_USER,
         to: email,
         subject: "Welcome to Future Plix",
-        text: "Thank you for joining Future Plix",
-        html: "<h1>Thank you for joining Future Plix</h1>",
+        text: `Your OTP is ${otp}`,
+        html: `<h1>Your OTP is ${otp}</h1>`,
     })
 }
