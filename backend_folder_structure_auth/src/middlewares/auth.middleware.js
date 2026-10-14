@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import User from "../models/user.model.js";
 
 export const verifyToken = async (req, res, next) => {
   try {
@@ -17,6 +18,28 @@ export const verifyToken = async (req, res, next) => {
         message: "Invalid token",
       });
     }
+
+
+    const user = User.findOne({ email: decodedToken.email });
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    // Only admin can access products
+    if (req.originalUrl.includes("products") && user.role !== "admin") {
+      return res.status(403).json({
+        message: "Only admin can access products",
+      });
+    }
+
+    if (user.role == "super-admin") {
+      next();
+      return;
+    }
+
+
 
     req.user = decodedToken;
     next();
