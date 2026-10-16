@@ -11,25 +11,25 @@ function App() {
 
   useEffect(() => {
     // Handle connect
-    socket.on('connect', () => {
-      setIsConnected(true)
-      setSocketId(socket.id)
-      console.log('Connected to server:', socket.id)
-    })
+    socket.on("connect", () => {
+      setIsConnected(true);
+      setSocketId(socket.id);
+      console.log("Connected to server:", socket.id);
+    });
 
     // Handle disconnect
-    socket.on('disconnect', () => {
-      setIsConnected(false)
-      setSocketId('')
-      console.log('Disconnected from server')
-    })
-
+    socket.on("disconnect", () => {
+      setIsConnected(false);
+      setSocketId("");
+      console.log("Disconnected from server");
+    });
     // Cleanup listeners on unmount
     return () => {
-      socket.off('connect')
-      socket.off('disconnect')
-    }
+      socket.off("connect");
+      socket.off("disconnect");
+    };
   }, [])
+
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
